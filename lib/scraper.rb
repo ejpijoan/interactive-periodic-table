@@ -3,18 +3,9 @@ require 'nokogiri'
 require 'open-uri'
 
 class Scraper
-    attr_accessor :url
-
-    def initialize(url)
-        @url = 'https://www.webelements.com/nexus/list-of-elements-by-atomic-number/'
-    end
-
-    def open_page(url)
-        Nokogiri::HTML(open(url))
-    end
-
-    def collect_elements
-        page = self.open_page(self.url)
+    
+    def self.collect_elements
+        page = Nokogiri::HTML(open('https://www.webelements.com/nexus/list-of-elements-by-atomic-number/'))
         elements_list = page.css('div.kcite-section').css('tr').drop(1)
         elements_list.collect do |element| 
             array = element.text.split(/\n/).drop(1)
@@ -27,8 +18,8 @@ class Scraper
         end
     end
 
-    def collect_data(link = "https://www.webelements.com/hydrogen/")
-        page = self.open_page("https://www.webelements.com/hydrogen/")
+    def self.collect_data(link)
+        page = Nokogiri::HTML(open("#{link}"))
         properties = page.css('ul.ul_facts_table').text.split(/\n/).map{|item| item.strip}
         properties_hash = {
         :mass => properties.drop(1).find{|item| item.include? "mass"}.gsub(/(Relative atomic mass)|\(|[Ar]|\)|\:/,"").strip,
