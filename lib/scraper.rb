@@ -1,6 +1,4 @@
-require 'pry'
-require 'nokogiri'
-require 'open-uri'
+require_relative '../config/environment' 
 
 class Scraper
     
@@ -30,5 +28,5 @@ class Scraper
         }
     end
 
-    binding.pry
+    #binding.pry
 end

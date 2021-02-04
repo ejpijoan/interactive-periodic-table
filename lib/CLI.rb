@@ -1,7 +1,8 @@
-require 'pry'
+require_relative '../config/environment'
 
 class CLI
-    def top_ten
+
+    def serlf.top_ten
         top_ten = [oxygen, silicone, aluminum, iron, calcium, sodium, magnesium, potassium, titanium]
         top_ten.each_with_index {|element, index| puts "#{index+1}. #{element}"}
             input = gets
@@ -13,11 +14,11 @@ class CLI
             end
     end
 
-    def welcome
+    def self.welcome
         puts "Hello, welcome to the Periodic Table of the Elements."
     end
 
-    def collect_element
+    def self.collect_element
         puts "Please choose an element to learn more about it by typing the name, atomic number, or atomic symbol and pressing enter. Alternately you may choose from a list of the ten most common elements by entering 'top ten'."
         input = gets
         if self.valid_element?(input)
@@ -31,7 +32,7 @@ class CLI
         end
     end
 
-    def valid_element?(input)
+    def self.valid_element?(input)
         if Element.all.find{|element| element.name == input || element.number == input || element.symbol == input}
             true
         else
@@ -39,7 +40,7 @@ class CLI
         end
     end
 
-    def ask_for_info?(element)
+    def self.ask_for_info?(element)
         puts "You chose the element #{element}, for more information choose from the options below or type exit to exit the program"
         puts "For the atomic number of your element type 'atomic number'"
         puts "For the atomic symbol of your element type 'atomic symbol'"
