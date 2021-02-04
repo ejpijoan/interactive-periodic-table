@@ -25,6 +25,11 @@ class Element
             self.send(("#{key}="),value)
         end
     end
+
+    def find_by_name(name)
+        @@all.find(|element| element.name == name)
+    end
+
 #binding.pry
 end
 
