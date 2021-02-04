@@ -2,32 +2,13 @@ require_relative '../config/environment'
 
 class CLI
 
-    def self.top_ten
-        top_ten = ["oxygen", "silicone", "aluminum", "iron", "calcium", "sodium", "magnesium", "potassium", "titanium"]
-        top_ten.each_with_index {|element, index| puts "#{index+1}. #{element}"}
-            input = gets
-            if self.valid_element?(input)
-            self.ask_for_info?
-            elsif input == exit
-                abort "You have chosen to exit the program."
-            else
-                puts "You have selected and invalid element, please choose again"
-                self.top_ten
-            end
-    end
-
     def self.welcome
-        puts "Hello, welcome to the Periodic Table of the Elements."
+        puts "Hello! Welcome to the Periodic Table of the Elements!"
     end
 
     def collect_elements
         array = Scraper.collect_elements
         Element.create_from_scraped_data(array)
-    end
-
-    def add_attr_element(element)
-        link = element.link 
-        Element.add_attributes(link)
     end
 
     def self.choose_element
@@ -47,8 +28,22 @@ class CLI
             abort "You have chosen to exit the program."
         else
             puts "The element you have entered is not valid."
-            self.collect_element 
+            self.choose_element 
         end
+    end
+
+    def self.top_ten
+        top_ten = ["oxygen", "silicone", "aluminum", "iron", "calcium", "sodium", "magnesium", "potassium", "titanium"]
+        top_ten.each_with_index {|element, index| puts "#{index+1}. #{element}"}
+            input = gets
+            if self.valid_element?(input)
+            self.ask_for_info?
+            elsif input == exit
+                abort "You have chosen to exit the program."
+            else
+                puts "You have selected and invalid element, please choose again"
+                self.top_ten
+            end
     end
 
     def self.valid_element?(input)
@@ -57,6 +52,11 @@ class CLI
         else
             false 
         end
+    end
+
+    def add_attr_element(element)
+        link = element.link 
+        Element.add_attributes(link)
     end
 
     def self.ask_for_info(element)

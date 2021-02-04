@@ -2,4 +2,4 @@
 
 require_relative '../config/environment'
 
-CLI.collect_element
+CLI.periodic_table_run
