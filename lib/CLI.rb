@@ -3,6 +3,14 @@ require 'pry'
 class CLI
     def top_ten
         top_ten = [oxygen, silicone, aluminum, iron, calcium, sodium, magnesium, potassium, titanium]
+        top_ten.each_with_index {|element, index| puts "#{index+1}. #{element}"}
+            input = gets
+            if self.valid_element?(input)
+            self.ask_for_info?
+            else
+                puts "You have selected and invalid element, please choose again"
+                self.top_ten
+            end
     end
 
     def welcome
@@ -16,13 +24,7 @@ class CLI
             self.ask_for_info?
         elsif input == "top ten"
             puts "Ten Most Common Elements on Earth:"
-            self.top_ten.each_with_index {|element, index| puts "#{index+1}. #{element}"}
-            input = gets
-            if self.valid_element?(input)
-            self.ask_for_info?
-            else
-                puts "You have selected and invalid element, please choose again"
-            end
+            self.top_ten
         else
             puts "The element you have entered is not valid."
             self.collect_element 
