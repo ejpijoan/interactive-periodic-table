@@ -20,7 +20,11 @@ class CLI
 
     def collect_elements
         array = Scraper.collect_elements
-        Elements.create_from_scraped_data(array)
+        Element.create_from_scraped_data(array)
+    end
+
+    def add_attr_element(link)
+        Element.add_attributes(link)
     end
 
     def self.choose_element
