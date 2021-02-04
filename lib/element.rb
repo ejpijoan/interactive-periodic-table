@@ -26,8 +26,15 @@ class Element
         end
     end
 
-    def find_by_name(name)
+    def self.find_by_name(name)
         @@all.find(|element| element.name == name)
+    end
+
+    def self.new_names
+         self.find_by_name("ununtrium").name= "nihonium"
+         self.find_by_name("ununpentium").name= "moscovium"
+         self.find_by_name("ununseptium").name= "tennessine"
+         self.find_by_name("ununoctium").name= "oganesson"
     end
 
 #binding.pry
