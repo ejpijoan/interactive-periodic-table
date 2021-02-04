@@ -49,7 +49,7 @@ class CLI
         end
     end
 
-    def self.ask_for_info?(element)
+    def self.ask_for_info(element)
         puts "You chose the element #{element}, for more information choose from the options below or type exit to exit the program"
         puts "For the atomic number of your element type 'atomic number'"
         puts "For the atomic symbol of your element type 'atomic symbol'"
@@ -77,11 +77,18 @@ class CLI
         elsif input == "new element"
             self.ask_for_info
         elsif input == exit
-            abort
+            abort "You have chose to exit the program."
         else
             puts "You have given an invalid input, please choose again"
             self_ask_for_info?
         end
+    end
+
+    def self.periodic_table_run
+        self.welcome
+        self.collect_elements
+        self.choose_element
+        self.ask_for_info
     end
 end
 
