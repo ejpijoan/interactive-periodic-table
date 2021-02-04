@@ -25,6 +25,6 @@ class Element
             self.send(("#{key}="),value)
         end
     end
-binding.pry
+#binding.pry
 end
 

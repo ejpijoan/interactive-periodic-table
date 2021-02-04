@@ -2,8 +2,8 @@ require_relative '../config/environment'
 
 class CLI
 
-    def serlf.top_ten
-        top_ten = [oxygen, silicone, aluminum, iron, calcium, sodium, magnesium, potassium, titanium]
+    def self.top_ten
+        top_ten = ["oxygen", "silicone", "aluminum", "iron", "calcium", "sodium", "magnesium", "potassium", "titanium"]
         top_ten.each_with_index {|element, index| puts "#{index+1}. #{element}"}
             input = gets
             if self.valid_element?(input)
@@ -18,7 +18,9 @@ class CLI
         puts "Hello, welcome to the Periodic Table of the Elements."
     end
 
-    def self.collect_element
+    def self.choose_element
+        array = Scraper.collect_elements
+        Elements.create_from_scraped_data(array)
         puts "Please choose an element to learn more about it by typing the name, atomic number, or atomic symbol and pressing enter. Alternately you may choose from a list of the ten most common elements by entering 'top ten'."
         input = gets
         if self.valid_element?(input)
