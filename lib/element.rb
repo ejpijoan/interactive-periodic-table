@@ -33,11 +33,11 @@ class Element
     def self.new_attr
         hash_1 = {Ununtrium:"Nihonium", Ununpentium:"Moscovium", Ununseptium:"Tennessine", Ununoctium:"Oganesson"}
         hash_1.each do |key, value|
-            self.find_by_attr("name", "#{key.to_s}").name= value
+            self.find_by_name("#{key.to_s}").name= value
         end
         hash_2 = {Nihonium:"Nh", Moscovium:"Mc", Tennessine:"Ts", Oganesson:"Og"}
         hash_2.each do |key, value|
-            self.find_by_attr("name","#{key.to_s}").symbol= value
+            self.find_by_name("#{key.to_s}").symbol= value
         end
     end
 
