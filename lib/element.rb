@@ -26,17 +26,17 @@ class Element
         end
     end
 
-    def self.find_by_name(name)
-        @@all.find(|element| element.name == name)
+    def self.find_by_attr(attribute, search_term)
+        @@all.find{|element| element.send(("#{attribute}="), search_term)}
     end
 
     def self.new_names
-         self.find_by_name("ununtrium").name= "nihonium"
-         self.find_by_name("ununpentium").name= "moscovium"
-         self.find_by_name("ununseptium").name= "tennessine"
-         self.find_by_name("ununoctium").name= "oganesson"
+        array = {Ununtrium:"Nihonium", Ununpentium:"Moscovium", Ununseptium:"Tennessine", Ununoctium:"Oganesson"}
+        array.each do |key, value|
+         self.find_by_attr("name", "#{key.to_s}").name= value
+        end
     end
 
-#binding.pry
+binding.pry
 end
 

@@ -27,6 +27,4 @@ class Scraper
         :facts => page.css('p.p_first').css('p').text.split(/\n/).join.strip
         }
     end
-
-    #binding.pry
 end

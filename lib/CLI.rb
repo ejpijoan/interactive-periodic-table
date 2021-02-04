@@ -9,17 +9,15 @@ class CLI
     def collect_elements
         array = Scraper.collect_elements
         Element.create_from_scraped_data(array)
+        Element.new_names
     end
 
     def self.choose_element
         puts "Please choose an element to learn more about it by typing the name, atomic number, or atomic symbol and pressing enter."
         puts "Alternately you may choose from a list of the ten most common elements by entering 'top ten'."
         input = gets
-        #new_name_hash = {nihonium:113, moscovium:115, tennessine:117, oganesson:118}
-        #if input.downcase == "nihonium" || input.downcase == "moscovium" || input.downcase == "tennessine", "oganesson"
-
         if self.valid_element?(input)
-            element = Element.all.find{|element| element.name == input.downcase || element.number == input || element.symbol == input}
+            element = Element.all.find{|element| element.name == input.capitalize || element.number == input || element.symbol == input}
             self.ask_for_info(element)
         elsif input == "top ten"
             puts "Ten Most Common Elements on Earth:"
@@ -33,7 +31,7 @@ class CLI
     end
 
     def self.top_ten
-        top_ten = ["oxygen", "silicone", "aluminum", "iron", "calcium", "sodium", "magnesium", "potassium", "titanium"]
+        top_ten = ["Oxygen", "Silicone", "Aluminum", "Iron", "Calcium", "Sodium", "Magnesium", "Potassium", "Titanium"]
         top_ten.each_with_index {|element, index| puts "#{index+1}. #{element}"}
             input = gets
             if self.valid_element?(input)
