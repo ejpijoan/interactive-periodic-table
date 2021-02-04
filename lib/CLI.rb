@@ -25,15 +25,21 @@ class CLI
         Element.create_from_scraped_data(array)
     end
 
-    def add_attr_element(link)
+    def add_attr_element(element)
+        link = element.link 
         Element.add_attributes(link)
     end
 
     def self.choose_element
-        puts "Please choose an element to learn more about it by typing the name, atomic number, or atomic symbol and pressing enter. Alternately you may choose from a list of the ten most common elements by entering 'top ten'."
+        puts "Please choose an element to learn more about it by typing the name, atomic number, or atomic symbol and pressing enter."
+        puts "Alternately you may choose from a list of the ten most common elements by entering 'top ten'."
         input = gets
+        #new_name_hash = {nihonium:113, moscovium:115, tennessine:117, oganesson:118}
+        #if input.downcase == "nihonium" || input.downcase == "moscovium" || input.downcase == "tennessine", "oganesson"
+
         if self.valid_element?(input)
-            self.ask_for_info?
+            element = Element.all.find{|element| element.name == input.downcase || element.number == input || element.symbol == input}
+            self.ask_for_info(element)
         elsif input == "top ten"
             puts "Ten Most Common Elements on Earth:"
             self.top_ten
@@ -46,7 +52,7 @@ class CLI
     end
 
     def self.valid_element?(input)
-        if Element.all.find{|element| element.name == input || element.number == input || element.symbol == input}
+        if Element.all.find{|element| element.name == input.downcase || element.number == input || element.symbol == input}
             true
         else
             false 
@@ -54,6 +60,7 @@ class CLI
     end
 
     def self.ask_for_info(element)
+        self.add_attr_element(element)
         puts "You chose the element #{element}, for more information choose from the options below or type exit to exit the program"
         puts "For the atomic number of your element type 'atomic number'"
         puts "For the atomic symbol of your element type 'atomic symbol'"
