@@ -12,11 +12,17 @@ class CLI
     def collect_element
         puts "Please choose an element to learn more about it by typing the name, atomic number, or atomic symbol and pressing enter. Alternately you may choose from a list of the ten most common elements by entering 'top ten'."
         input = gets
-        if valid_element?(input)
+        if self.valid_element?(input)
+            self.ask_for_info?
         elsif input == "top ten"
             puts "Ten Most Common Elements on Earth:"
             self.top_ten.each_with_index {|element, index| puts "#{index+1}. #{element}"}
-            self.collect_element
+            input = gets
+            if self.valid_element?(input)
+            self.ask_for_info?
+            else
+                puts "You have selected and invalid element, please choose again"
+            end
         else
             puts "The element you have entered is not valid."
             self.collect_element 
