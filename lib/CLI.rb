@@ -1,5 +1,3 @@
-require_relative '../config/environment'
-
 class CLI
 
     def welcome
@@ -23,7 +21,7 @@ class CLI
         elsif input == "top ten"
             puts "Ten Most Common Elements on Earth:"
             self.top_ten
-        elsif input == exit
+        elsif input == "exit"
             abort"You have chosen to exit the program."
         else
             puts "The element you have entered is not valid."
@@ -32,7 +30,7 @@ class CLI
     end
 
     def self.top_ten_list
-        list = ["Oxygen", "Silicone", "Aluminum", "Iron", "Calcium", "Sodium", "Magnesium", "Potassium", "Titanium"]
+        list = ["Oxygen", "Silicon", "Aluminium", "Iron", "Calcium", "Sodium", "Magnesium", "Potassium", "Titanium", "Hydrogen"]
         list.collect{|name| Element.find_by_name(name)}
     end
 
@@ -40,10 +38,13 @@ class CLI
         top_ten = CLI.top_ten_list
         top_ten_names = top_ten.collect{|element| element.name} 
         top_ten_names.each_with_index {|element, index| puts "#{index+1}. #{element}"}
+        puts "To choose an element type its name, atomic symbol, or attomic number."
+        puts "You may also find an element by typing its pound sine (#) follwoed by its nubmer on the list, as in '#1'"
             input = gets.strip
-            if self.valid_element?(input)
-            self.ask_for_info?
-            elsif input == exit
+            if CLI.valid_from_list?(input)
+                element = CLI.valid_from_list?(input)
+            self.ask_for_info(element)
+            elsif input == "exit"
                 abort"You have chosen to exit the program."
             else
                 puts "You have selected and invalid element, please choose again"
@@ -55,8 +56,15 @@ class CLI
         Element.all.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"}
     end
 
-    def valid_from_list?(input)
-        self.top_ten_list.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"} || self.top_ten_list[input.to_i + 1]
+    def self.valid_from_list?(input)
+        if CLI.top_ten_list.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"}
+            CLI.top_ten_list.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"}
+        elsif input.include? "#" 
+            new_input = input.gsub(/\#/, "").to_i
+            CLI.top_ten_list[new_input - 1]
+        else
+            nil
+        end
     end
 
     def self.add_attr_element(element)
@@ -67,7 +75,7 @@ class CLI
 
     def ask_for_info(element)
         CLI.add_attr_element(element)
-        puts "You chose the element #{element.name}, for more information choose from the options below or type exit to exit the program"
+        puts "You chose the element #{element.name}, for more information choose from the options below or type 'exit' to exit the program."
         puts "For the atomic number of your element type 'atomic number'"
         puts "For the atomic symbol of your element type 'atomic symbol'"
         puts "For the atomic mass of your element type 'atomic mass'"
@@ -92,24 +100,27 @@ class CLI
         elsif input == "fun facts"
             puts "#{element.fun_facts}"
         elsif input == "new element"
-            self.ask_for_info
-        elsif input == exit
+            self.choose_element
+        elsif input == "exit"
             abort"You have chosen to exit the program."
         else
             puts "You have given an invalid input, please choose again"
-            self_ask_for_info?(element)
+            self.ask_for_info(element)
         end
         self.choose_again(element)
     end
 
     def choose_again(element)
-        puts "Would you like to choose another element, or see furthur information on your chosen element?"
+        puts "Would you like to choose another element, or see further information on your chosen element?"
+        puts "If you would like to choose another element type 'new element'."
+        puts "If you would like to see further information please type 'more info'."
         input = gets.strip
+
         if input == "new element"
             self.choose_element
         elsif input == "more info"
             self.ask_for_info(element)
-        elsif input == exit
+        elsif input == "exit"
             abort"You have chosen to exit the program."
         else
             puts "You have given an invalid input, please choose again"
