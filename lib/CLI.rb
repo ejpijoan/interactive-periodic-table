@@ -55,6 +55,10 @@ class CLI
         Element.all.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"}
     end
 
+    def valid_from_list?(input)
+        self.top_ten_list.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"} || self.top_ten_list[input.to_i + 1]
+    end
+
     def self.add_attr_element(element)
         link = element.link 
         hash = Scraper.collect_data(link)
