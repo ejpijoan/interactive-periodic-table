@@ -15,9 +15,9 @@ class CLI
     def choose_element
         puts "Please choose an element to learn more about it by typing the name, atomic number, or atomic symbol and pressing enter."
         puts "Alternately you may choose from a list of the ten most common elements by entering 'top ten'."
+        binding.pry
         input = gets
         if self.valid_element?(input)
-            binding.pry
             element = Element.all.find{|element| element.name == input.capitalize || element.number == input || element.symbol == input}
             self.ask_for_info(element)
         elsif input == "top ten"
@@ -45,15 +45,15 @@ class CLI
             end
     end
 
-    def valid_element?(input)
-        if Element.all.find{|element| element.name == input.downcase || element.number == input || element.symbol == input}
+    def self.valid_element?(input)
+        if Element.all.find{|element| element.name == input.upcase} || Element.all.find{|element| element.number == input} || Element.all.find{|element| element.symbol == input}
             true
         else
             false 
         end
     end
 
-    def add_attr_element(element)
+    def self.add_attr_element(element)
         link = element.link 
         Element.add_attributes(link)
     end
