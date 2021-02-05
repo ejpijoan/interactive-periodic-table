@@ -89,9 +89,24 @@ class CLI
             puts "You have given an invalid input, please choose again"
             self_ask_for_info?(element)
         end
+        self.choose_again
     end
 
-    
+    def choose_again(element)
+        puts "Would you like to choose another element, or see furthur information on your chosen element?"
+        input = gets.strip
+        if input == "new element"
+            self.choose_element
+        elsif input == "more info"
+            self.ask_for_info(element)
+        elsif input == exit
+            abort "You have chosen to exit the program."
+        else
+            puts "You have given an invalid input, please choose again"
+            self.choose_again
+        end
+    end
+
 
     def periodic_table_run
         self.welcome
