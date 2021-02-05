@@ -24,7 +24,7 @@ class CLI
             puts "Ten Most Common Elements on Earth:"
             self.top_ten
         elsif input == exit
-            abort "You have chosen to exit the program."
+            abort"You have chosen to exit the program."
         else
             puts "The element you have entered is not valid."
             self.choose_element 
@@ -38,7 +38,7 @@ class CLI
             if self.valid_element?(input)
             self.ask_for_info?
             elsif input == exit
-                abort "You have chosen to exit the program."
+                abort"You have chosen to exit the program."
             else
                 puts "You have selected and invalid element, please choose again"
                 self.top_ten
@@ -84,12 +84,12 @@ class CLI
         elsif input == "new element"
             self.ask_for_info
         elsif input == exit
-            abort "You have chosen to exit the program."
+            abort"You have chosen to exit the program."
         else
             puts "You have given an invalid input, please choose again"
             self_ask_for_info?(element)
         end
-        self.choose_again
+        self.choose_again(element)
     end
 
     def choose_again(element)
@@ -100,10 +100,10 @@ class CLI
         elsif input == "more info"
             self.ask_for_info(element)
         elsif input == exit
-            abort "You have chosen to exit the program."
+            abort"You have chosen to exit the program."
         else
             puts "You have given an invalid input, please choose again"
-            self.choose_again
+            self.choose_again(element)
         end
     end
 
