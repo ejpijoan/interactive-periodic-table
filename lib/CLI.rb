@@ -14,7 +14,6 @@ class CLI
         puts "Please choose an element to learn more about it by typing the name, atomic number, or atomic symbol and pressing enter."
         puts "Alternately you may choose from a list of the ten most common elements by entering 'top ten'."
         input = gets.strip
-        #binding.pry
         if CLI.valid_element?(input)
             element = CLI.valid_element?(input)
             self.ask_for_info(element)
@@ -22,7 +21,7 @@ class CLI
             puts "Ten Most Common Elements on Earth:"
             self.top_ten
         elsif input == "exit"
-            abort"You have chosen to exit the program."
+            abort"Goodbye!"
         else
             puts "The element you have entered is not valid."
             self.choose_element 
@@ -45,7 +44,7 @@ class CLI
                 element = CLI.valid_from_list?(input)
             self.ask_for_info(element)
             elsif input == "exit"
-                abort"You have chosen to exit the program."
+                abort"Goodbye!"
             else
                 puts "You have selected and invalid element, please choose again"
                 self.top_ten
@@ -102,7 +101,7 @@ class CLI
         elsif input == "new element"
             self.choose_element
         elsif input == "exit"
-            abort"You have chosen to exit the program."
+            abort"Goodbye!"
         else
             puts "You have given an invalid input, please choose again"
             self.ask_for_info(element)
@@ -121,7 +120,7 @@ class CLI
         elsif input == "more info"
             self.ask_for_info(element)
         elsif input == "exit"
-            abort"You have chosen to exit the program."
+            abort"Goodbye!"
         else
             puts "You have given an invalid input, please choose again"
             self.choose_again(element)

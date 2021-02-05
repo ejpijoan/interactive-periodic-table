@@ -40,7 +40,5 @@ class Element
             self.find_by_name("#{key.to_s}").symbol= value
         end
     end
-
-#binding.pry
 end
 
