@@ -31,9 +31,15 @@ class CLI
         end
     end
 
+    def self.top_ten_list
+        list = ["Oxygen", "Silicone", "Aluminum", "Iron", "Calcium", "Sodium", "Magnesium", "Potassium", "Titanium"]
+        list.collect{|name| Element.find_by_name(name)}
+    end
+
     def top_ten
-        top_ten = ["Oxygen", "Silicone", "Aluminum", "Iron", "Calcium", "Sodium", "Magnesium", "Potassium", "Titanium"]
-        top_ten.each_with_index {|element, index| puts "#{index+1}. #{element}"}
+        top_ten = CLI.top_ten_list
+        top_ten_names = top_ten.collect{|element| element.name} 
+        top_ten_names.each_with_index {|element, index| puts "#{index+1}. #{element}"}
             input = gets.strip
             if self.valid_element?(input)
             self.ask_for_info?
