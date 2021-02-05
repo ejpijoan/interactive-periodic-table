@@ -2,4 +2,5 @@
 
 require_relative '../config/environment'
 
-CLI.periodic_table_run
+periodic_table = CLI.new
+periodic_table.periodic_table_run

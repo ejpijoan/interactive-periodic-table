@@ -2,21 +2,22 @@ require_relative '../config/environment'
 
 class CLI
 
-    def self.welcome
+    def welcome
         puts "Hello! Welcome to the Periodic Table of the Elements!"
     end
 
-    def collect_elements
+    def self.collect_elements
         array = Scraper.collect_elements
         Element.create_from_scraped_data(array)
-        Element.new_names
+        Element.new_attr
     end
 
-    def self.choose_element
+    def choose_element
         puts "Please choose an element to learn more about it by typing the name, atomic number, or atomic symbol and pressing enter."
         puts "Alternately you may choose from a list of the ten most common elements by entering 'top ten'."
         input = gets
         if self.valid_element?(input)
+            binding.pry
             element = Element.all.find{|element| element.name == input.capitalize || element.number == input || element.symbol == input}
             self.ask_for_info(element)
         elsif input == "top ten"
@@ -30,7 +31,7 @@ class CLI
         end
     end
 
-    def self.top_ten
+    def top_ten
         top_ten = ["Oxygen", "Silicone", "Aluminum", "Iron", "Calcium", "Sodium", "Magnesium", "Potassium", "Titanium"]
         top_ten.each_with_index {|element, index| puts "#{index+1}. #{element}"}
             input = gets
@@ -44,7 +45,7 @@ class CLI
             end
     end
 
-    def self.valid_element?(input)
+    def valid_element?(input)
         if Element.all.find{|element| element.name == input.downcase || element.number == input || element.symbol == input}
             true
         else
@@ -57,8 +58,8 @@ class CLI
         Element.add_attributes(link)
     end
 
-    def self.ask_for_info(element)
-        self.add_attr_element(element)
+    def ask_for_info(element)
+        CLI.add_attr_element(element)
         puts "You chose the element #{element}, for more information choose from the options below or type exit to exit the program"
         puts "For the atomic number of your element type 'atomic number'"
         puts "For the atomic symbol of your element type 'atomic symbol'"
@@ -93,9 +94,9 @@ class CLI
         end
     end
 
-    def self.periodic_table_run
+    def periodic_table_run
         self.welcome
-        self.collect_elements
+        CLI.collect_elements
         self.choose_element
         self.ask_for_info
     end

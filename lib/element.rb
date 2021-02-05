@@ -41,6 +41,6 @@ class Element
         end
     end
 
-binding.pry
+#binding.pry
 end
 
