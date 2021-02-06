@@ -1,9 +1,9 @@
-#Interactive Periodic Table
+# Interactive Periodic Table
 
 This application uses a CLI to allow the user to search for an element of their choice, and request and view information about that element.   
 
 
-###Summary
+### Summary
 
 Getting Started
 
@@ -20,11 +20,11 @@ License
 Acknowledgments
 
 
-###Getting Started
+### Getting Started
 
 The instructions bellow will guide you through getting a copy of this application up and running on your local machine for testing or development.
 
-####Installing
+#### Installing
 
 Clone the file for this project onto your device using:
 ```
@@ -35,30 +35,30 @@ Make sure you have the necessary gems installed.
 
 These are: Nokogiri, open-uri, and pry
 
-####Starting the App
+#### Starting the App
 In the directory for the project use the command bellow to run #interactive-periodic-table:
 ```
 bin/periodic-table
 ```
 
-###Built With
+### Built With
 
 Contributor Covenant - Used for the Code of Conduct
 Creative Commons - Used to choose the license
 
 
-###Contributing
+### Contributing
 Please read Contributing.md for details on our code of conduct, and the process for submitting pull requests to us.
 
 
-###Author
+### Author
 Emiko Nagasawa-Pijoan
 
 
-###License
+### License
 This project is licensed under the CC0 1.0 Universal Creative Commons License - see the licence.md file for details
 
 
-###Acknowledgments
+### Acknowledgments
 Inspired by my favorite periodic tables at compoundchem.com
 
