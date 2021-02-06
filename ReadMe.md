@@ -48,26 +48,21 @@ bin/periodic-table
 Built With
 
 Contributor Covenant - Used for the Code of Conduct
-
 Creative Commons - Used to choose the license
 
 
 Contributing
-
 Please read Contributing.md for details on our code of conduct, and the process for submitting pull requests to us.
 
 
 Author
-
 Emiko Nagasawa-Pijoan
 
 
 License
-
 This project is licensed under the CC0 1.0 Universal Creative Commons License - see the licence.md file for details
 
 
 Acknowledgments
-
 Inspired by my favorite periodic tables at compoundchem.com
 
