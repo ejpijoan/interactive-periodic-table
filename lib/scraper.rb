@@ -28,7 +28,7 @@ class Scraper
             properties_hash[:mass] = "N/A"
         end
         if properties.drop(1).find{|item| item.include? "state"}
-            properties.hash[:standard_state] = properties.drop(1).find{|item| item.include? "state"}.gsub(/(Standard state:)/, "").strip
+            properties_hash[:standard_state] = properties.drop(1).find{|item| item.include? "state"}.gsub(/(Standard state:)/, "").strip
         else   
             properties_hash[:standard_state] = "N/A"
         end
