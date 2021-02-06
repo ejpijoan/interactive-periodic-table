@@ -18,11 +18,10 @@ Installing
 Clone the file for this project onto your device using:
 $ git clone "code to clone here"
 
-Go to the directory for this project, and run:
-$ bundle install
-to install all the neccessary gems
+Make sure you have the necessary gems installed. 
+These are: Nokogiri, open-uri, and pry
 
-Still the the directory for the project use the command bellow to run interactive-periodic-table:
+In the directory for the project use the command bellow to run interactive-periodic-table:
 bin/periodic-table
 
 Built With
