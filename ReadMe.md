@@ -27,8 +27,9 @@ The instructions bellow will guide you through getting a copy of this applicatio
 Installing
 
 Clone the file for this project onto your device using:
-
-$ git clone "code to clone here"
+```
+git clone "code to clone here"
+```
 
 Make sure you have the necessary gems installed. 
 These are: Nokogiri, open-uri, and pry
