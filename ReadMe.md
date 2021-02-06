@@ -36,15 +36,15 @@ These are: Nokogiri, open-uri, and pry
 
 In the directory for the project use the command bellow to run interactive-periodic-table:
 Go to the directory for this project, and run:
-
+```
 $ bundle install
-
+```
 to install all the neccessary gems
 
 Still the the directory for the project use the command bellow to run interactive-periodic-table:
-
+```
 bin/periodic-table
-
+```
 
 Built With
 
