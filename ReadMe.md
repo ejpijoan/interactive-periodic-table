@@ -60,5 +60,6 @@ This project is licensed under the CC0 1.0 Universal Creative Commons License - 
 
 
 ### Acknowledgments
+Data scraped from webelements.com
 Inspired by my favorite periodic tables at compoundchem.com
 

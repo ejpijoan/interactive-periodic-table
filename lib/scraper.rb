@@ -1,10 +1,9 @@
 require_relative '../config/environment' 
 
 class Scraper
-    
     def self.collect_elements
         page = Nokogiri::HTML(open('https://www.webelements.com/nexus/list-of-elements-by-atomic-number/'))
-        elements_list = page.css('div.kcite-section').css('tr').drop(1)
+        elements_list = page.css('div.kcite-section tr').drop(1)
         elements_list.collect do |element| 
             array = element.text.split(/\n/).drop(1)
             hash = { 
@@ -19,7 +18,7 @@ class Scraper
     def self.collect_data(link)
         page = Nokogiri::HTML(open("#{link}"))
         properties = page.css('ul.ul_facts_table').text.split(/\n/).map{|item| item.strip}
-        facts = page.css('p.p_first').css('p').text.split(/\n/).drop(1)
+        facts = page.css('p.p_first p').text.split(/\n/).drop(1)
         facts.pop
         properties_hash = {}
         if properties.drop(1).find{|item| item.include? "mass"}
