@@ -18,8 +18,9 @@ class Scraper
     def self.collect_data(link)
         page = Nokogiri::HTML(open("#{link}"))
         properties = page.css('ul.ul_facts_table').text.split(/\n/).map{|item| item.strip}
-        facts = page.css('p.p_first p').text.split(/\n/).drop(1)
+        facts = page.css('p.p_first').css('p').text.split(/\n/).drop(1)
         facts.pop
+        binding.pry
         properties_hash = {}
         if properties.drop(1).find{|item| item.include? "mass"}
             properties_hash[:mass] = properties.drop(1).find{|item| item.include? "mass"}.gsub(/(Relative atomic mass)|\(|[Ar]|\)|\:/,"").strip
