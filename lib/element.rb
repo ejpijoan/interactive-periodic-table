@@ -26,6 +26,14 @@ class Element
         end
     end
 
+    def name=(name)
+        @name = name
+    end 
+    
+    def name
+        @name
+    end
+
     def self.find_by_name(name)
         @@all.find{|element| element.name == name}
     end
@@ -39,6 +47,12 @@ class Element
         hash_2.each do |key, value|
             self.find_by_name("#{key.to_s}").symbol= value
         end
+    end
+
+    #create a class method that takes and argument of a classification and returns an array of all elements that have that classification.
+
+    def self.list_by_classification(classification)
+        self.all.find_all{|element| element.classification == classification} 
     end
 end
 
