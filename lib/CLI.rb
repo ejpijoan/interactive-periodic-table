@@ -127,11 +127,5 @@ class CLI
         end
     end
 
-
-    def periodic_table_run
-        self.welcome
-        CLI.collect_elements
-        self.choose_element
-    end
 end
 
