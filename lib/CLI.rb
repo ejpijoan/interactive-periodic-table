@@ -2,10 +2,12 @@ class CLI
 
     def welcome
         puts "Hello! Welcome to the Periodic Table of the Elements!"
+        Scraper.collect_elements
+        self.choose_element
     end
 
     def self.collect_elements
-        array = Scraper.collect_elements
+        Scraper.collect_elements
         Element.create_from_scraped_data(array)
         Element.new_attr
     end
@@ -21,7 +23,7 @@ class CLI
             puts "Ten Most Common Elements on Earth:"
             self.top_ten
         elsif input == "exit"
-            abort"Goodbye!"
+            abort("Goodbye!")
         else
             puts "The element you have entered is not valid."
             self.choose_element 

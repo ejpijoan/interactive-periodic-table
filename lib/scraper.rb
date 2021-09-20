@@ -1,8 +1,7 @@
-require_relative '../config/environment' 
-
 class Scraper
     def self.collect_elements
         page = Nokogiri::HTML(open('https://www.webelements.com/nexus/list-of-elements-by-atomic-number/'))
+        binding.pry
         elements_list = page.css('div.kcite-section tr').drop(1)
         elements_list.collect do |element| 
             array = element.text.split(/\n/).drop(1)
@@ -12,6 +11,7 @@ class Scraper
                 :number => array [2], 
                 :link => element.css('td a').attribute('href').value
             }
+            Element.new(hash)
         end
     end
 
@@ -46,6 +46,6 @@ class Scraper
         else
             properties_hash[:fun_facts] = "N/A"
         end
-        properties_hash
+        element.add_properties(properties_hash)
     end
 end
