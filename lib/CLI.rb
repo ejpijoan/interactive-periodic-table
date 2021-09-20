@@ -23,13 +23,9 @@ class CLI
         end
     end
 
-    def self.top_ten_list
-        list = ["Oxygen", "Silicon", "Aluminium", "Iron", "Calcium", "Sodium", "Magnesium", "Potassium", "Titanium", "Hydrogen"]
-        list.collect{|name| Element.find_by_name(name)}
-    end
-
     def top_ten
-        top_ten = CLI.top_ten_list
+        top_ten = Element.top_ten_list
+        binding.pry
         top_ten_names = top_ten.collect{|element| element.name} 
         top_ten_names.each_with_index {|element, index| puts "#{index+1}. #{element}"}
         puts "To choose an element type its name, atomic symbol, or attomic number."
