@@ -11,6 +11,10 @@ class Element
         @@all
     end
 
+    def self.valid?(element)
+        self.all.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"}
+    end
+
     def self.create_from_scraped_data(elements_array)
         elements_array.each do|element| 
             element[:name] = Element.new(element)

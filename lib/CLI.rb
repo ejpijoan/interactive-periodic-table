@@ -6,19 +6,11 @@ class CLI
         self.choose_element
     end
 
-    def self.collect_elements
-        Scraper.collect_elements
-        Element.create_from_scraped_data(array)
-        Element.new_attr
-    end
-
     def choose_element
-        binding.pry
         puts "Please choose an element to learn more about it by typing the name, atomic number, or atomic symbol and pressing enter."
         puts "Alternately you may choose from a list of the ten most common elements by entering 'top ten'."
         input = gets.strip
-        if CLI.valid_element?(input)
-            element = CLI.valid_element?(input)
+        if element = Element.valid?(input)
             self.ask_for_info(element)
         elsif input == "top ten"
             puts "Ten Most Common Elements on Earth:"
@@ -52,10 +44,6 @@ class CLI
                 puts "You have selected and invalid element, please choose again"
                 self.top_ten
             end
-    end
-
-    def self.valid_element?(input)
-        Element.all.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"}
     end
 
     def self.valid_from_list?(input)
