@@ -1,7 +1,6 @@
 class Scraper
     def self.collect_elements
         page = Nokogiri::HTML(open('https://www.webelements.com/nexus/list-of-elements-by-atomic-number/'))
-        binding.pry
         elements_list = page.css('div.kcite-section tr').drop(1)
         elements_list.collect do |element| 
             array = element.text.split(/\n/).drop(1)

@@ -13,6 +13,7 @@ class CLI
     end
 
     def choose_element
+        binding.pry
         puts "Please choose an element to learn more about it by typing the name, atomic number, or atomic symbol and pressing enter."
         puts "Alternately you may choose from a list of the ten most common elements by entering 'top ten'."
         input = gets.strip
