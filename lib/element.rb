@@ -23,7 +23,6 @@ class Element
     def self.valid_from_list?(input)
         if e = self.top_ten_list.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"}
             e
-            # Element.top_ten_list.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"}
         elsif input.include? "#" 
             new_input = input.gsub(/\#/, "").to_i
             self.top_ten_list[new_input - 1]
@@ -36,6 +35,12 @@ class Element
         elements_array.each do|element| 
             element[:name] = Element.new(element)
         end
+    end
+
+    def add_attr_element
+        link = self.link 
+        hash = Scraper.collect_data(link)
+        self.add_attributes(hash)
     end
 
     def add_attributes(hash)

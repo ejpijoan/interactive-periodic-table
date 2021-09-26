@@ -42,12 +42,6 @@ class CLI
             end
     end
 
-    def self.add_attr_element(element)
-        link = element.link 
-        hash = Scraper.collect_data(link)
-        element.add_attributes(hash)
-    end
-
     def ask_for_info(element)
         CLI.add_attr_element(element)
         puts "You chose the element #{element.name}, for more information choose from the options below or type 'exit' to exit the program."
