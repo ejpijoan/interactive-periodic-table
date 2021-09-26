@@ -103,5 +103,9 @@ class CLI
         end
     end
 
+    def end
+        abort('Goodbye!')
+    end
+
 end
 
