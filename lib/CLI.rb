@@ -31,8 +31,8 @@ class CLI
         puts "To choose an element type its name, atomic symbol, or attomic number."
         puts "You may also find an element by typing its pound sine (#) follwoed by its nubmer on the list, as in '#1'"
             input = gets.strip
-            if CLI.valid_from_list?(input)
-                element = CLI.valid_from_list?(input)
+            if Element.valid_from_list?(input)
+                element = Element.valid_from_list?(input)
             self.ask_for_info(element)
             elsif input == "exit"
                 abort"Goodbye!"
@@ -40,18 +40,6 @@ class CLI
                 puts "You have selected and invalid element, please choose again"
                 self.top_ten
             end
-    end
-
-    def self.valid_from_list?(input)
-        if e = Element.top_ten_list.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"}
-            e
-            # Element.top_ten_list.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"}
-        elsif input.include? "#" 
-            new_input = input.gsub(/\#/, "").to_i
-            Element.top_ten_list[new_input - 1]
-        else
-            nil
-        end
     end
 
     def self.add_attr_element(element)
