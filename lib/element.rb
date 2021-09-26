@@ -37,7 +37,7 @@ class Element
         end
     end
 
-    def add_attr_element
+    def get_attributes
         link = self.link 
         hash = Scraper.collect_data(link)
         self.add_attributes(hash)
