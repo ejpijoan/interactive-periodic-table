@@ -43,11 +43,12 @@ class CLI
     end
 
     def self.valid_from_list?(input)
-        if CLI.top_ten_list.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"}
-            CLI.top_ten_list.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"}
+        if e = Element.top_ten_list.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"}
+            e
+            # Element.top_ten_list.find{|element| element.name == "#{input.capitalize}" || element.number == "#{input}" || element.symbol == "#{input}"}
         elsif input.include? "#" 
             new_input = input.gsub(/\#/, "").to_i
-            CLI.top_ten_list[new_input - 1]
+            Element.top_ten_list[new_input - 1]
         else
             nil
         end
