@@ -43,7 +43,7 @@ class CLI
     end
 
     def ask_for_info(element)
-        element.get_attributes
+        element.add_attributes
         puts "You chose the element #{element.name}, for more information choose from the options below or type 'exit' to exit the program."
         puts "For the atomic number of your element type 'atomic number'"
         puts "For the atomic symbol of your element type 'atomic symbol'"
