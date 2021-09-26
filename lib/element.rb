@@ -37,13 +37,9 @@ class Element
         end
     end
 
-    def get_attributes
+    def add_attributes
         link = self.link 
         hash = Scraper.collect_data(link)
-        self.add_attributes(hash)
-    end
-
-    def add_attributes(hash)
         hash.each do |key, value|
             self.class.attr_accessor(key)
             self.send(("#{key}="),value)
